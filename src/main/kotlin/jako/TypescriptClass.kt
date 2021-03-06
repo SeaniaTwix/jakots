@@ -1,6 +1,8 @@
 package jako
 
 import com.github.skjolber.indent.IndentBuilder
+import java.io.File
+import java.nio.charset.Charset
 
 class TypescriptClass(private val cls: Class<*>): TypescriptIdent(), TypescriptGeneric {
     private var dependencies = mutableListOf<String>()
@@ -89,6 +91,11 @@ class TypescriptClass(private val cls: Class<*>): TypescriptIdent(), TypescriptG
             " /* enum: Because java enums can have functions. */"
         else
             " /* ${name.split('$').last()} */"
+    }
+
+    fun export(path: String) {
+        val file = File("$path/$name.d.ts")
+        file.writeText(file.toString(), Charset.forName("UTF-8"))
     }
 
     companion object {

@@ -2,7 +2,7 @@ package jako
 
 import java.lang.reflect.Field
 
-class TypescriptField(val owner: TypescriptClass, private val field: Field): TypescriptIdent() {
+class TypescriptField(private val owner: TypescriptClass, private val field: Field): TypescriptIdent() {
     override val rawName: String = field.name
     override var name: String = rawName
     override val rawType: String = field.genericType.typeName
